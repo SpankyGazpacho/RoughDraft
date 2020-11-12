@@ -1,0 +1,5 @@
+# Takes in validated list, if all entries are numerical, it will atuomatically detect the data type
+
+def sortlist(sortlist):
+    list.sort()
+    return (sortlist)
