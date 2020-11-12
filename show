@@ -1,0 +1,3 @@
+def showlist(sortedlist, message):
+    print("Well that went well! Your sorted list of "+ message +"is"+ sortedlist)
+    return
