@@ -1,0 +1,86 @@
+# Import everything here
+import get
+import val
+import sort
+import Error
+import showtime
+
+
+# The main function handles:
+# The primary loop and user requests for continues or exits
+# The transmission of error codes to errormessage()
+#main loop
+def main(listtype):
+    bit=listtype
+
+    error = False
+    error1 = False
+    errorcount = 0
+    errorcount1 = 0
+    errormessages = 7
+    errormessages1 = 7
+# Call getlist
+    seplist=get.getlist()
+
+
+#call validate list
+    newlist,error,error1=val.validatelist(seplist,bit)
+
+    while error==True:
+        errorcount=errorcount+1
+        idnum=errorcount
+        if errorcount < errormessages:
+            errortxt=Error.errormessage(idnum,newlist)
+            if errorcount>=errormessages-1:
+                running=False
+    while error1==True:
+        errorcount1=errorcount1+1
+        idnum1=errorcount1
+        if errorcount1 < errormessages1:
+            errortxt1=Error.errormessage1(idnum1,newlist)
+            if errorcount1>=errormessages1-1:
+                running=False
+# Call sortlist
+    sortedlist = sort.sortlist(newlist)
+    while error==False:
+        if listtype == 'i':
+            message=["intager"]
+        else:
+            message =["string"]
+
+
+# Call showlist
+    endmessages=showtime.showlist(sortedlist, message)
+running = True
+
+filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\simpsons.txt'
+myfile = open(filepath, "r")
+mydata1 = myfile.read()
+
+filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\efrink.txt'
+myfile = open(filepath, "r")
+mydata1 = myfile.read()
+
+gamemessage=("Hi there i'm professor Frink and I just invented this new program that can sort a \nlist and I was "+
+             "wondering if you could help me test it? I need you to enter a list \nof strings or intagers. "+
+             "Please indicate what kind of list you would like to see \n sorted, type s for string or i for intigers")
+while (running):
+
+    userinput =input(gamemessage + "or enter q or quit to end the program:").lower()
+
+    if (userinput =="q") | (userinput=="quit"):
+        running = False
+        break
+    main(userinput)
+    Continue = input("Would you like to enter another list? (yes/no) ").lower()
+    repcheck = True
+    while repcheck:
+        if (Continue == 'no') | (Continue == 'n'):
+            running = False
+            repcheck = False
+        elif(Continue == 'yes') | (Continue == 'y'):
+            running = True
+            repcheck = False
+            gamemessage=("Let start with what kind of list agian, type s for string or i for intigers")
+        else:
+            (print("Please enter 'yes' or 'no'. "))
