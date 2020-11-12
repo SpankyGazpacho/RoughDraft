@@ -53,18 +53,22 @@ def main(listtype):
     endmessages=showtime.showlist(sortedlist, message)
 running = True
 
-filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\simpsons.txt'
-myfile = open(filepath, "r")
-mydata1 = myfile.read()
 
-filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\efrink.txt'
-myfile = open(filepath, "r")
-mydata1 = myfile.read()
 
 gamemessage=("Hi there i'm professor Frink and I just invented this new program that can sort a \nlist and I was "+
              "wondering if you could help me test it? I need you to enter a list \nof strings or intagers. "+
              "Please indicate what kind of list you would like to see \n sorted, type s for string or i for intigers")
 while (running):
+
+    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\simpsons.txt'
+    myfile = open(filepath, "r")
+    mydata1 = myfile.read()
+    print(mydata1)
+
+    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\efrink.txt'
+    myfile = open(filepath, "r")
+    mydata2 = myfile.read()
+    print(mydata2)
 
     userinput =input(gamemessage + "or enter q or quit to end the program:").lower()
 
