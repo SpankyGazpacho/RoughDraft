@@ -1,24 +1,12 @@
-# pass seplist and listtype
-# put a try that returns datatype = "discription" if it fails
-# doesn't print the list
-
-def validatelist(seplist, listtype):
+def validatelist(seplist, listtype, errorcodelist):
     numofentries = len(seplist)
     x = 0
-    enteredlist=[]
-    error=False
-    error1=False
     try:
         if listtype == "i":
-            while x < numofentries:
-                enteredlist[x] = int(seplist[x])
-                x = x + 1
-        if listtype == "s":
-            error=False
-        # anything besides an i or s
-        else:
-            error = True
-        # anything thats not a number
+            seplist = list(map(int, seplist))
+        elif listtype != "s":
+            errorcodelist.append(1)
     except(ValueError):
-        error1 = True
-    return (enteredlist,error,error1)
+        errorcodelist.append(2)
+    print("Val done")
+    return (seplist, errorcodelist)
