@@ -1,117 +1,66 @@
-#
-#
-def errormessage(idnum,errordata):
-    errorindex = idnum
+def errormessage(idnum, errdata, callcount, seplist, listtype):
+    #Error Specific Text
+    est = ["an 'i' or an 's'", "integer list"]
+
+    #Max number of times the same error can be invoked
+    callmax = 9
+    #Incrementing error call counter
+    callcount[idnum] += 1
+    print()
+
+    #Conditional exit flag
+    if callcount[idnum] >= callmax:
+        # send quit flag
+        bootmsg = "Booting user from program."
+        return(bootmsg, errdata, callcount)
+
+    # Error msg data
     errorlist = []
 
-    errorindex = idnum
-    errorlist = []
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\maggie.txt'
+#    myfile = open(filepath, "r")
+#    mydata1 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\maggie.txt'
-    myfile = open(filepath, "r")
-    mydata1 = myfile.read()
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\lisa.txt'
+#    myfile = open(filepath, "r")
+#    mydata2 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\lisa.txt'
-    myfile = open(filepath, "r")
-    mydata2 = myfile.read()
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\maggi1.txt'
+#    myfile = open(filepath, "r")
+#    mydata3 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\maggi1.txt'
-    myfile = open(filepath, "r")
-    mydata3 = myfile.read()
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\ebart.txt'
+#    myfile = open(filepath, "r")
+#    mydata4 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\ebart.txt'
-    myfile = open(filepath, "r")
-    mydata4 = myfile.read()
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\grampa.txt'
+#    myfile = open(filepath, "r")
+#    mydata5 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\grampa.txt'
-    myfile = open(filepath, "r")
-    mydata5 = myfile.read()
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\mart.txt'
+#    myfile = open(filepath, "r")
+#    mydata6 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\mart.txt'
-    myfile = open(filepath, "r")
-    mydata6 = myfile.read()
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\drunk.txt'
+#    myfile = open(filepath, "r")
+#    mydata7 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\drunk.txt'
-    myfile = open(filepath, "r")
-    mydata7 = myfile.read()
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\marge.txt'
+#    myfile = open(filepath, "r")
+#    mydata8 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\marge.txt'
-    myfile = open(filepath, "r")
-    mydata8 = myfile.read()
+#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\homer.txt'
+#    myfile = open(filepath, "r")
+#    mydata9 = myfile.read()
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\homer.txt'
-    myfile = open(filepath, "r")
-    mydata9 = myfile.read()
-
-    errorlist.append(mydata1 + "Looks like you went out the same way as Mr.Burns ")
-    errorlist.append(mydata2 + "Try again Plesae.That was not an i or s list but you gave me ")
-    errorlist.append(mydata3 + "Hey not again...even babies can enter a i or s list but you game me ")
-    errorlist.append(mydata4 + "Hey don't have a cow man.Eat my shorts and try again This crap is not an i or s ")
-    errorlist.append(mydata5 + " Waaaaaa...Come on even I can remember you need to give an i or s not ")
-    errorlist.append(mydata6 + "Haa HAA. Not an i or s ")
-    errorlist.append(mydata7 + "You might wanna lay off the beer and try again this is not an an i or s even with your beer goggles")
-    errorlist.append(mydata8 + "This could be your last chance but your lucky I'm willing to forgive you this is not an i or s")
-    errorlist.append(mydata9 + "Doh!This list makes homer somthing somthing...")
-
-    if idnum > len(errorlist) - 1:
-        errorindex = 0
-    errortxt = (errorlist[errorindex] + str(errordata))
-
-    return(errortxt)
-
-def errormessage1(idnum1,errordata):
-    errorindex = idnum1
-    errorlist = []
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\maggie.txt'
-    myfile = open(filepath, "r")
-    mydata1 = myfile.read()
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\lisa.txt'
-    myfile = open(filepath, "r")
-    mydata2 = myfile.read()
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\maggi1.txt'
-    myfile = open(filepath, "r")
-    mydata3 = myfile.read()
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\ebart.txt'
-    myfile = open(filepath, "r")
-    mydata4 = myfile.read()
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\grampa.txt'
-    myfile = open(filepath, "r")
-    mydata5 = myfile.read()
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\mart.txt'
-    myfile = open(filepath, "r")
-    mydata6 = myfile.read()
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\drunk.txt'
-    myfile = open(filepath, "r")
-    mydata7 = myfile.read()
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\marge.txt'
-    myfile = open(filepath, "r")
-    mydata8 = myfile.read()
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\homer.txt'
-    myfile = open(filepath, "r")
-    mydata9 = myfile.read()
-
-    errorlist.append(mydata1+"Looks like you went out the same way as Mr.Burns ")
-    errorlist.append(mydata2 +"Try again Plesae.You said you wanted an intager list but you gave me ")
-    errorlist.append(mydata3+"Hey not again...even babies can enter an intager list but you game me ")
-    errorlist.append(mydata4+"Hey don't have a cow man.Eat my shorts and try again This crap is not an intager list ")
-    errorlist.append(mydata5+" Waaaaaa...Come on even I can remember you need to give an intager list not ")
-    errorlist.append(mydata6+"Haa HAA. Not an intager list")
-    errorlist.append(mydata7+"You might wanna lay off the beer and try again this list is not an intager list even with your beer goggles")
-    errorlist.append(mydata8+"This could be your last chance but your lucky I'm willing to forgive you this is not an intager list")
-    errorlist.append(mydata9+"Doh!This list makes homer somthing somthing...")
-
-
-
-    if idnum1 > len(errorlist) - 1:
-        errorindex = 0
-    errortxt=(errorlist[errorindex]+str(errordata))
-    return (errortxt)
+    errorlist.append('mydata1' + "Looks like you went out the same way as Mr.Burns ")
+    errorlist.append('mydata2' + "Try again Plesae.That was not an " + str(est[idnum]) + " list but you gave me ")
+    errorlist.append('mydata3' + "Hey not again...even babies can enter " + str(est[idnum]) + " but you game me ")
+    errorlist.append('mydata4' + "Hey don't have a cow man.Eat my shorts and try again This crap is not " + str(est[idnum]))
+    errorlist.append('mydata5' + " Waaaaaa...Come on even I can remember you need to give " + str(est[idnum]) + " or not ")
+    errorlist.append('mydata6' + "Haa HAA. Not an " + str(est[idnum]))
+    errorlist.append('mydata7' + "You might wanna lay off the beer and try again this is not an " + str(est[idnum]) + " even with your beer goggles")
+    errorlist.append('mydata8' + "This could be your last chance but your lucky I'm willing to forgive you this is not " + str(est[idnum]))
+    errorlist.append('mydata9' + "Doh!This list makes homer somthing somthing...")
+    print("Error done")
+    return(errorlist[idnum],errdata, callcount)

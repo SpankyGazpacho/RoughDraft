@@ -1,76 +1,35 @@
-# Import everything here
 import get
 import val
 import sort
 import Error
 import showtime
 
+callcount = [0, 0]
 
-# The main function handles:
-# The primary loop and user requests for continues or exits
-# The transmission of error codes to errormessage()
-#main loop
 def main(listtype):
-    bit=listtype
 
-    error = False
-    error1 = False
-    errorcount = 0
-    errorcount1 = 0
-    errormessages = 7
-    errormessages1 = 7
-# Call getlist
-    seplist=get.getlist()
+    errorcodelist = [0]
 
 
-#call validate list
-    newlist,error,error1=val.validatelist(seplist,bit)
+    seplist = get.getlist()
 
-    while error==True:
-        errorcount=errorcount+1
-        idnum=errorcount
-        if errorcount < errormessages:
-            errortxt=Error.errormessage(idnum,newlist)
-            if errorcount>=errormessages-1:
-                running=False
-    while error1==True:
-        errorcount1=errorcount1+1
-        idnum1=errorcount1
-        if errorcount1 < errormessages1:
-            errortxt1=Error.errormessage1(idnum1,newlist)
-            if errorcount1>=errormessages1-1:
-                running=False
-# Call sortlist
+    newlist, valerrors = val.validatelist(seplist, listtype, errorcodelist)
+
+
+    errorcodelist.append(valerrors)
+
+    for errindex in range(0, len(errorcodelist)):
+        Error.errormessage(errindex, errorcodelist[errindex], callcount, seplist, listtype)
+        callcount[errindex] += 1
+
     sortedlist = sort.sortlist(newlist)
-    while error==False:
-        if listtype == 'i':
-            message=["intager"]
-        else:
-            message =["string"]
 
-
-# Call showlist
-    endmessages=showtime.showlist(sortedlist, message)
+    result = showtime.showlist(sortedlist)
 running = True
 
-
-
-gamemessage=("Hi there i'm professor Frink and I just invented this new program that can sort a \nlist and I was "+
-             "wondering if you could help me test it? I need you to enter a list \nof strings or intagers. "+
-             "Please indicate what kind of list you would like to see \n sorted, type s for string or i for intigers")
 while (running):
 
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\simpsons.txt'
-    myfile = open(filepath, "r")
-    mydata1 = myfile.read()
-    print(mydata1)
-
-    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\efrink.txt'
-    myfile = open(filepath, "r")
-    mydata2 = myfile.read()
-    print(mydata2)
-
-    userinput =input(gamemessage + "or enter q or quit to end the program:").lower()
+    userinput =input("Enter a i/s or enter q or quit to end the program:").lower()
 
     if (userinput =="q") | (userinput=="quit"):
         running = False
