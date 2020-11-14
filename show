@@ -1,3 +1,4 @@
-def showlist(sortedlist, message):
-    print("Well that went well! Your sorted list of "+ message +"is"+ sortedlist)
-    return
+def showlist(sortedlist):
+    print("Well that went well! Your sorted list of is " + str(sortedlist))
+    #print("Show done")
+    return(sortedlist)
