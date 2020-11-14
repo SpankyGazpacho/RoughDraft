@@ -2,10 +2,9 @@ def validatelist(seplist, listtype):
     errorcode = 0
     if listtype == "i":
         try:
-            #seplist = list(map(int, seplist))
             for i in range(len(seplist)):
                 seplist[i] = int(seplist[i])
         except(ValueError):
             errorcode = 2
-    #print("Val done")
+#   print("Val done")
     return (seplist, errorcode)
