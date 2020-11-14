@@ -4,37 +4,38 @@ import sort
 import error
 import show
 
-def death(callcount):
-    if callcount >= 9:
-        return(False)
-    else:
-        return(True)
 
-def main(listtype):
-    maincallcount = 0
+def kickuser(callcount):
+    if callcount >= 9:
+        return False
+    else:
+        return True
+
+
+def main(listtype, maincallcount):
+#   maincallcount = 0
+
     seplist = get.getlist()
 
     newlist, valerror = val.validatelist(seplist, listtype)
+
     if valerror == 2:
         error.errormessage(valerror, newlist, maincallcount)
         maincallcount += 1
-        #print("val error call")
-
-    sortedlist = sort.sortlist(newlist)
-
-    result = show.showlist(sortedlist)
-
-    return(maincallcount)
+#       print("val error call")
+        return maincallcount
+    else:
+        sortedlist = sort.sortlist(newlist)
+        show.showlist(sortedlist)
+        return maincallcount
 
 
 running = True
-
 callcount = 0
 
 while running:
 
-    userinput = input("Enter a i/s or enter q or quit to end the program:").lower()
-
+    userinput = input("Enter an i/s or enter q or quit to end the program: ").lower()
 
     if (userinput == "q") | (userinput == "quit"):
         running = False
@@ -42,30 +43,30 @@ while running:
     elif (userinput != 'i') & (userinput != 's'):
         error.errormessage(1, userinput, callcount)
         callcount += 1
-        running = death(callcount)
-        #print('i or s call"')
+#       print("ATTENTION" + str(callcount))
+        running = kickuser(callcount)
+#       print('i or s call"')
         continue
 
-
-    callcount = callcount + main(userinput)
-    running = death(callcount)
-    print("ATTENTION" + str(callcount))
-    #print(main(userinput))
-    #main(userinput)
+    callcount = main(userinput, callcount)
+    running = kickuser(callcount)
+#   print(running)
+#   print("ATTENTION" + str(callcount))
+#   print(main(userinput))
 
     repcheck = True
-    while repcheck:
+    while repcheck & running:
         Continue = input("Would you like to enter another list? (yes/no) ").lower()
         if (Continue == 'no') | (Continue == 'n'):
             running = False
             repcheck = False
-        elif(Continue == 'yes') | (Continue == 'y'):
+        elif (Continue == 'yes') | (Continue == 'y'):
             running = True
             repcheck = False
             gamemessage = "Let start with what kind of list agian, type 's' for string or 'i' for intigers"
         else:
             error.errormessage(3, Continue, callcount)
             callcount = callcount + 1
-            #print("yes/no error call")
-            print("ATTENTION" + str(callcount))
-            running = death(callcount)
+#           print("yes/no error call")
+#           print("ATTENTION" + str(callcount))
+            running = kickuser(callcount)
