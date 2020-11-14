@@ -1,5 +1,5 @@
-#getlist
 def getlist():
   originallist = input("Please enter your list separated by space:")
   seplist=originallist.split()
-  return (seplist)
+  #print("Get done")
+  return(seplist)
