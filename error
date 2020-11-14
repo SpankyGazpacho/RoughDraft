@@ -1,74 +1,72 @@
-def errormessage(idnum, errdata, callcount):
-    #Error Specific Text
-    est = [''," an 'i' or an 's' ", " an integer list ", " a yes or a no "]
+import get
+import val
+import sort
+import error
+import show
 
 
-    #Max number of times the same error can be invoked
-    callmax = 9
-    #Incrementing error call counter
-    #callcount[idnum] += 1
+def kickuser(callcount):
+    if callcount >= 9:
+        return False
+    else:
+        return True
 
 
-    #Conditional exit flag
-    #if callcount >= callmax:
-        # send quit flag
-     #   bootmsg = "Booting user from program."
-      #  return(bootmsg, errdata, callcount)
+def main(listtype, maincallcount):
+#   maincallcount = 0
 
-    # Error msg data
-    errorlist = []
+    seplist = get.getlist()
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\maggie.txt'
-#    myfile = open(filepath, "r")
-#    mydata1 = myfile.read()
+    newlist, valerror = val.validatelist(seplist, listtype)
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\lisa.txt'
-#    myfile = open(filepath, "r")
-#    mydata2 = myfile.read()
+    if valerror == 2:
+        error.errormessage(valerror, newlist, maincallcount)
+        maincallcount += 1
+#       print("val error call")
+        return maincallcount
+    else:
+        sortedlist = sort.sortlist(newlist)
+        show.showlist(sortedlist)
+        return maincallcount
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\maggi1.txt'
-#    myfile = open(filepath, "r")
-#    mydata3 = myfile.read()
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\ebart.txt'
-#    myfile = open(filepath, "r")
-#    mydata4 = myfile.read()
+running = True
+callcount = 0
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\grampa.txt'
-#    myfile = open(filepath, "r")
-#    mydata5 = myfile.read()
+while running:
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\mart.txt'
-#    myfile = open(filepath, "r")
-#    mydata6 = myfile.read()
+    userinput = input("Enter an i/s or enter q or quit to end the program: ").lower()
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\drunk.txt'
-#    myfile = open(filepath, "r")
-#    mydata7 = myfile.read()
+    if (userinput == "q") | (userinput == "quit"):
+        running = False
+        break
+    elif (userinput != 'i') & (userinput != 's'):
+        error.errormessage(1, userinput, callcount)
+        callcount += 1
+#       print("ATTENTION" + str(callcount))
+        running = kickuser(callcount)
+#       print('i or s call"')
+        continue
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\marge.txt'
-#    myfile = open(filepath, "r")
-#    mydata8 = myfile.read()
+    callcount = main(userinput, callcount)
+    running = kickuser(callcount)
+#   print(running)
+#   print("ATTENTION" + str(callcount))
+#   print(main(userinput))
 
-#    filepath = 'C:\\Users\crimsonkitty\Desktop\prg assigment 3\simpsons\homer.txt'
-#    myfile = open(filepath, "r")
-#    mydata9 = myfile.read()
-    errorlist.append('mydata2' + "Try again Plesae.That was not" + str(est[idnum]) + "but you gave me ")
-    errorlist.append('mydata3' + "Hey not again...even babies can enter" + str(est[idnum]) + "but you game me ")
-    errorlist.append('mydata4' + "Hey don't have a cow man.Eat my shorts and try again This crap is not" + str(est[idnum]) + "but you game me ")
-    errorlist.append('mydata5' + " Waaaaaa...Come on even I can remember you need to give" + str(est[idnum]) + "or not, but you gave me ")
-    errorlist.append('mydata6' + "Haa HAA. Not" + str(est[idnum]))
-    errorlist.append('mydata7' + "You might wanna lay off the beer and try again this is not" + str(est[idnum]) + "even with your beer goggles. You gave me ")
-    errorlist.append('mydata8' + "This could be your last chance but your lucky I'm willing to forgive you this is not" + str(est[idnum]) + ", it's ")
-    errorlist.append('mydata9' + "Doh!This list makes homer somthing somthing...")
-    errorlist.append('mydata1' + "Looks like you went out the same way as Mr.Burns ")
-    #print("Error done")
-    #print(callcount)
-    print(errorlist[callcount] + str(errdata))
-    #return(errorlist[callcount[idnum]],errdata)
-
-#callcount = 0
-#for i in range(0, 5):
-#    errormessage(1,"fsdfs",callcount)
- #   i += 1
-  #  callcount += 1
+    repcheck = True
+    while repcheck & running:
+        Continue = input("Would you like to enter another list? (yes/no) ").lower()
+        if (Continue == 'no') | (Continue == 'n'):
+            running = False
+            repcheck = False
+        elif (Continue == 'yes') | (Continue == 'y'):
+            running = True
+            repcheck = False
+            gamemessage = "Let start with what kind of list agian, type 's' for string or 'i' for intigers"
+        else:
+            error.errormessage(3, Continue, callcount)
+            callcount = callcount + 1
+#           print("yes/no error call")
+#           print("ATTENTION" + str(callcount))
+            running = kickuser(callcount)
