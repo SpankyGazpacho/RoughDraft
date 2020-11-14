@@ -1,4 +1,3 @@
 def showlist(sortedlist):
     print("Well that went well! Your sorted list of is " + str(sortedlist))
-    #print("Show done")
-    return(sortedlist)
+#   print("Show done")
