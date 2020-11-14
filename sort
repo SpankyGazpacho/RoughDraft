@@ -1,4 +1,4 @@
 def sortlist(slist):
     slist.sort()
-    #print("Sort done")
-    return (slist)
+#   print("Sort done")
+    return slist
